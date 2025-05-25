@@ -1,6 +1,9 @@
 # baby-gate
 A proof-of-concept auth server built with NATS.
 
+> [!WARNING]
+> This is a WIP and is not functioning yet.
+
 ## Getting Started
 
 ### Prerequisites
