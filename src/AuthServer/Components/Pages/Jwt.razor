@@ -1,0 +1,25 @@
+@page "/jwt"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject Services.JwtService PatService
+<PageTitle>Jwt</PageTitle>
+
+<h3>Your Jwt</h3>
+
+@if (!string.IsNullOrEmpty(jwtToken))
+{
+    <p>@jwtToken</p>
+}
+
+@code {
+    private string jwtToken = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        jwtToken = await PatService.CreateJwtForUserAsync();
+    }
+
+}
+
+
+
