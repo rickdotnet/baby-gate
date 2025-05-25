@@ -51,7 +51,6 @@ public static class Startup
         return app;
     }
     
-    
     private static AuthServerConfig AddConfig(this WebApplicationBuilder builder)
     {
         builder.Configuration.AddEnvironmentVariables("BABY_");
