@@ -1,7 +1,8 @@
 @page "/jwt"
 @using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
-@inject Services.JwtService PatService
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Services.JwtUtility JwtUtility
 <PageTitle>Jwt</PageTitle>
 
 <h3>Your Jwt</h3>
@@ -14,9 +15,13 @@
 @code {
     private string jwtToken = string.Empty;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        jwtToken = await PatService.CreateJwtForUserAsync();
+        var user = HttpContextAccessor.HttpContext?.User.Identity?.Name;
+        if (!string.IsNullOrEmpty(user))
+        {
+            jwtToken = JwtUtility.CreateJwtForUserAsync(user);    
+        }
     }
 
 }

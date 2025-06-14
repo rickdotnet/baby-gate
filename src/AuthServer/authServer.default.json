@@ -1,4 +1,6 @@
 {
+  "NatsUser": "",
+  "NatsPassword": "",
   "NatsSeed": "",
   "GitHubClient": "",
   "GitHubSecret": ""

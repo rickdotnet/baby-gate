@@ -1,0 +1,30 @@
+@page "/pat"
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject IHttpContextAccessor HttpContextAccessor
+@inject Services.PatService PatService
+<PageTitle>PAT</PageTitle>
+
+<h3>Your PAT</h3>
+
+@if (!string.IsNullOrEmpty(patToken))
+{
+    <p>@patToken</p>
+}
+
+@code {
+    private string patToken = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = HttpContextAccessor.HttpContext?.User.Identity?.Name;
+        if (!string.IsNullOrEmpty(user))
+        {
+            patToken = await PatService.CreatePat(user);    
+        }
+    }
+
+}
+
+
+

@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="9.4.0" />
+      <PackageReference Include="NATS.Extensions.Microsoft.DependencyInjection" Version="2.6.0-preview.3" />
       <PackageReference Include="NATS.Jwt" Version="1.0.0-preview.12" />
       <PackageReference Include="Stebet.Nats.DistributedCache" Version="0.1.10-Preview" />
       <PackageReference Include="Synadia.AuthCallout" Version="1.0.0-preview.4" />
