@@ -37,6 +37,7 @@ public static class Startup
     
         builder.Services.AddAuthentication(options =>
             {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = GitHubAuthenticationDefaults.AuthenticationScheme;
             })

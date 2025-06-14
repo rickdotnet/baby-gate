@@ -9,12 +9,27 @@ A proof-of-concept auth server built with NATS.
 ### Prerequisites
 
 - [GitHub Application](https://github.com/settings/apps/new)
-- NATS server configured for Auth Callout
+- NATS server configured for [Auth Callout](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_callout)
   - example below
+
+### Quick Start
+
+To quickly run the auth server with NATS, you can use the instructions provided in the [build/README.md](build/README.md) file.
 
 ### Running
 
-Rename `authServer.default.json` to `authServer.json` and update the configuration values as needed.
+1. Open the solution and copy `authServer.default.json` to `authServer.json`.
+2. Add your GitHub credentials.
+3. Ensure NATS is running and the configurations match
+4. Run the `AuthServer` project.
+
+
+## Components
+
+### Jwt and PAT Minting
+
+The demo creates a NATS flavored JWT and optionally stores a shorter PAT value in a [Stebet.Nats.DistributedCache](https://github.com/stebet/Stebet.Nats.DistributedCache) backed cache. 
+When a client connects, values that are passed in the `Token` field will be verified directly. Otherwise, it will check the `Password` field for the PAT and look the JWT in the cache.
 
 ### Auth Callout
 
@@ -57,6 +72,7 @@ jetstream {
     max_mem: 1G
     max_file: 30G
 }
+
 accounts {
   AUTH: {
     jetstream: enabled
@@ -81,6 +97,16 @@ authorization {
     account: AUTH
   }
 }
+```
+
+NATS CLI context
+```json
+{
+  "url": "nats://localhost:4222",
+  "user": "required-but-not-used",
+  "password": "pat-generated-by-auth-server"
+}
+
 ```
 
 ## Sources
