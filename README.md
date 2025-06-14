@@ -1,8 +1,8 @@
 # baby-gate
 A proof-of-concept auth server built with NATS.
 
-> [!WARNING]
-> This is a WIP and is not functioning yet.
+> [!IMPORTANT]
+> This is a proof-of-concept and should not be used in production.
 
 ## Getting Started
 
